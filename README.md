@@ -41,7 +41,7 @@ chmod +x deploy.sh
 После успешного выполнения откройте в браузере:
 
 ```text
-http://185.92.181.109
+http://vbaranov.tech
 ```
 
 ## Обновление сайта
@@ -66,4 +66,14 @@ git pull origin main
 
 ```bash
 ufw allow 'Nginx HTTP'
+```
+
+## HTTPS
+
+Перед выпуском сертификата убедитесь, что DNS-записи `A` для `vbaranov.tech` и `www.vbaranov.tech` указывают на `185.92.181.109`, а лишних `AAAA`-записей на парковку хостинга нет.
+
+```bash
+apt install -y certbot python3-certbot-nginx
+certbot --nginx -d vbaranov.tech -d www.vbaranov.tech
+certbot renew --dry-run
 ```

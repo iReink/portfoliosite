@@ -4,7 +4,7 @@ set -euo pipefail
 REPO_URL="${REPO_URL:-https://github.com/iReink/portfoliosite.git}"
 BRANCH="${BRANCH:-main}"
 SITE_DIR="${SITE_DIR:-/var/www/portfoliosite}"
-SERVER_NAME="${SERVER_NAME:-185.92.181.109}"
+SERVER_NAME="${SERVER_NAME:-vbaranov.tech www.vbaranov.tech}"
 NGINX_CONF="/etc/nginx/sites-available/portfoliosite"
 SUDO=""
 
