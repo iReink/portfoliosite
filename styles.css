@@ -323,18 +323,27 @@ details,
 }
 
 .case-list {
-  display: grid;
-  max-width: 920px;
-  gap: 26px;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  gap: 18px;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  padding: 0 0 18px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
 }
 
 .portfolio-card {
   display: grid;
   grid-template-columns: 1fr;
+  flex: 0 0 clamp(360px, 31vw, 430px);
   gap: 0;
+  min-height: 0;
   overflow: hidden;
   padding: 14px;
   color: inherit;
+  scroll-snap-align: start;
   transition: transform 180ms ease, box-shadow 180ms ease;
 }
 
@@ -345,9 +354,9 @@ details,
 
 .portfolio-card img {
   width: 100%;
-  height: 100%;
-  min-height: 360px;
-  max-height: 520px;
+  height: 172px;
+  min-height: 0;
+  max-height: none;
   object-fit: cover;
   border-radius: var(--radius);
   background: var(--ink);
@@ -358,14 +367,22 @@ details,
 }
 
 .portfolio-card-copy {
-  padding: clamp(20px, 3vw, 34px) clamp(8px, 1.6vw, 18px) 8px;
+  padding: 16px 8px 8px;
+}
+
+.portfolio-card-copy h3 {
+  font-size: clamp(21px, 1.8vw, 26px);
+}
+
+.portfolio-card-copy p {
+  font-size: 15px;
 }
 
 .card-metrics {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: 20px;
+  margin-top: 12px;
 }
 
 .card-metrics span,
@@ -450,24 +467,33 @@ summary small {
 .skill-section {
   display: grid;
   gap: 0;
+  padding-bottom: 0;
 }
 
 .skill-cloud {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-bottom: 24px;
 }
 
 .compact {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+}
+
+.compact details {
+  align-self: start;
+}
+
+.education-section {
+  padding-top: clamp(58px, 7vw, 92px);
 }
 
 .contact-section {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(260px, 0.42fr);
   gap: 36px;
-  margin-top: var(--section);
+  margin-top: clamp(22px, 3vw, 38px);
   padding: clamp(28px, 5vw, 54px);
 }
 
@@ -912,13 +938,18 @@ tr:last-child td {
     width: 100%;
   }
 
-  .portfolio-card img {
-    min-height: 220px;
-  }
-
   .principles article,
   .portfolio-card {
     min-height: auto;
+  }
+
+  .portfolio-card {
+    flex-basis: min(82vw, 340px);
+  }
+
+  .portfolio-card img {
+    height: 154px;
+    min-height: 0;
   }
 
   summary {

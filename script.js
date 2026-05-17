@@ -22,17 +22,6 @@ const setActiveLink = () => {
 setActiveLink();
 window.addEventListener("scroll", setActiveLink, { passive: true });
 
-document.querySelectorAll(".accordion-list details").forEach((details) => {
-  details.addEventListener("toggle", () => {
-    if (!details.open) return;
-
-    const parent = details.closest(".accordion-list");
-    parent.querySelectorAll("details").forEach((item) => {
-      if (item !== details) item.open = false;
-    });
-  });
-});
-
 const zoomableImages = Array.from(document.querySelectorAll(".case-image img, .case-cover img"));
 
 if (zoomableImages.length) {
