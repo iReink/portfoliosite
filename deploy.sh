@@ -31,6 +31,7 @@ if [ -f "$CERT_DIR/fullchain.pem" ] && [ -f "$CERT_DIR/privkey.pem" ]; then
   $SUDO tee "$NGINX_CONF" >/dev/null <<NGINX
 server {
     listen 80;
+    listen [::]:80;
     server_name $SERVER_NAME;
 
     location /.well-known/acme-challenge/ {
@@ -44,6 +45,7 @@ server {
 
 server {
     listen 443 ssl;
+    listen [::]:443 ssl;
     server_name $SERVER_NAME;
 
     root $SITE_DIR;
@@ -63,6 +65,7 @@ else
   $SUDO tee "$NGINX_CONF" >/dev/null <<NGINX
 server {
     listen 80;
+    listen [::]:80;
     server_name $SERVER_NAME;
 
     root $SITE_DIR;

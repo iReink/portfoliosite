@@ -70,7 +70,7 @@ ufw allow 'Nginx HTTP'
 
 ## HTTPS
 
-Перед выпуском сертификата убедитесь, что DNS-записи `A` для `vbaranov.tech` и `www.vbaranov.tech` указывают на `185.92.181.109`, а лишних `AAAA`-записей на парковку хостинга нет.
+Перед выпуском сертификата убедитесь, что DNS-записи `A` для `vbaranov.tech` и `www.vbaranov.tech` указывают на `185.92.181.109`. Если используете IPv6, `AAAA` должен указывать на IPv6 VPS: `2a13:7c00:8:2:f816:3eff:fec3:70d6`.
 
 ```bash
 apt install -y certbot python3-certbot-nginx
