@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Кейс Вадима Баранова: редизайн раздела Прайс-листы в B2B SaaS-продукте для управленческого учёта."
+    />
+    <title>Редизайн раздела «Прайс-листы» - Вадим Баранов</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body class="case-page">
+    <main>
+      <header class="case-header">
+        <a class="back-link" href="../index.html#cases">← Все кейсы</a>
+        <p class="eyebrow">B2B SaaS / Mobile / Системная архитектура</p>
+        <h1>Редизайн раздела «Прайс-листы»</h1>
+        <p class="case-lead">
+          Я пересобрал модель прайс-листов из ограниченного справочника в системный инструмент для проектов,
+          отчётов и смет. Решение снизило ручное дублирование, сделало расчёты предсказуемее и повлияло на рост Retention D30.
+        </p>
+        <div class="case-meta">
+          <span>Ведущий дизайнер раздела</span>
+          <span>Архитектура данных</span>
+          <span>Retention D30 +22%</span>
+        </div>
+      </header>
+
+      <figure class="case-cover">
+        <img src="../assets/cases/price-lists-cover.png" alt="Обложка кейса редизайна раздела Прайс-листы" />
+      </figure>
+
+      <div class="case-layout">
+        <nav class="case-toc" aria-label="Навигация по кейсу">
+          <a href="#task">Задача</a>
+          <a href="#logic">Решение</a>
+          <a href="#validation">Проверка</a>
+          <a href="#result">Результат</a>
+        </nav>
+
+        <article class="case-article">
+          <section class="case-block" id="task">
+            <h2>Задача</h2>
+            <p>
+              Раздел «Прайс-листы» был одним из ключевых инструментов продукта: через него подрядчики формировали отчёты,
+              бригадиры - сметы, а руководители управляли стоимостью работ. Но один прайс на компанию плохо масштабировался
+              на разные проекты и направления работ.
+            </p>
+            <div class="case-note">
+              <strong>Проблема была не только в интерфейсе.</strong>
+              Нужно было найти модель, которая снижает ошибки, сокращает ручные операции и встраивает прайсы в ежедневные сценарии.
+            </div>
+            <div class="image-grid">
+              <figure class="case-image wide-image">
+                <img src="../assets/cases/price-lists/03.png" alt="Проблема старой модели прайс-листов" />
+                <figcaption>Старая модель масштабировалась только в условиях одного активного проекта.</figcaption>
+              </figure>
+            </div>
+          </section>
+
+          <section class="case-block" id="logic">
+            <h2>Ключевые решения</h2>
+            <h3>От одного прайса к системе</h3>
+            <p>
+              Вместо единственного справочника появилась поддержка нескольких прайсов внутри компании:
+              отдельные направления, ценовые сегменты, назначение прайса на проект и дублирование структуры.
+            </p>
+            <h3>Гибкость на уровне проекта</h3>
+            <p>
+              Следующим шагом стала модель базового прайса с локальными изменениями на проекте:
+              руководитель мог менять цены и видимость позиций без создания новых корпоративных копий.
+            </p>
+            <h3>Интеграция в рабочие процессы</h3>
+            <p>
+              Прайс-лист перестал быть самостоятельным разделом настройки и стал частью создания отчётов и смет.
+              Пользователь выбирал позиции из назначенного прайса с учётом проектных настроек.
+            </p>
+            <div class="image-grid">
+              <figure class="case-image">
+                <img src="../assets/cases/price-lists/04.png" alt="Поддержка множественных прайс-листов" />
+                <figcaption>Переход к множественным прайсам внутри компании.</figcaption>
+              </figure>
+              <figure class="case-image">
+                <img src="../assets/cases/price-lists/07.png" alt="Гибкость прайса на уровне проекта" />
+                <figcaption>Контроль цены и видимости позиций на уровне проекта.</figcaption>
+              </figure>
+              <figure class="case-image wide-image">
+                <img src="../assets/cases/price-lists/08.png" alt="Сценарии отчётов и смет с новой моделью прайсов" />
+                <figcaption>Новая модель замкнула цикл от архитектуры данных до ежедневного использования.</figcaption>
+              </figure>
+            </div>
+          </section>
+
+          <section class="case-block" id="validation">
+            <h2>Проверка сценариев</h2>
+            <p>
+              После сборки ключевых сценариев я провёл серию юзабилити-тестов на действующих пользователях:
+              руководителях проектов и исполнителях. Участники выбирали прайс в проекте, меняли цены, скрывали категории
+              и создавали отчёты с позициями прайс-листа.
+            </p>
+            <ul>
+              <li>Пользователи корректно считывали источник данных и не пытались дублировать прайсы без необходимости.</li>
+              <li>Точки напряжения возникали вокруг момента, когда изменения становятся локальными для проекта.</li>
+              <li>В следующих итерациях были усилены сигналы различия между базовыми и локальными данными.</li>
+            </ul>
+          </section>
+
+          <section class="case-block" id="result">
+            <h2>Результат и вклад</h2>
+            <div class="result-grid">
+              <div class="case-fact">
+                <strong>+22%</strong>
+                <span>рост Retention D30 после запуска новой модели</span>
+              </div>
+              <div class="case-fact">
+                <strong>1</strong>
+                <span>единый источник данных для проектов, отчётов и смет</span>
+              </div>
+              <div class="case-fact">
+                <strong>-30%</strong>
+                <span>меньше времени на уточнение требований при передаче в разработку</span>
+              </div>
+            </div>
+            <p>
+              Моя роль: ведущий дизайнер раздела. Я отвечал за продуктовую логику, архитектуру данных,
+              пользовательские сценарии, прототипирование и документацию для разработки.
+            </p>
+            <div class="case-note">
+              <strong>Продуктовый вывод:</strong>
+              в сложных B2B-сценариях ценность дизайна часто создаётся не новыми экранами,
+              а устойчивой моделью взаимодействия с данными.
+            </div>
+          </section>
+        </article>
+      </div>
+    </main>
+
+    <footer>
+      <span>Вадим Баранов</span>
+      <a href="../index.html#contacts">Контакты</a>
+    </footer>
+
+    <script src="../script.js"></script>
+  </body>
+</html>

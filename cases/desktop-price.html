@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Кейс Вадима Баранова: десктопная модель прайса для B2B SaaS, табличная рабочая среда и рост платных подписок."
+    />
+    <title>Десктопная модель прайса - Вадим Баранов</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body class="case-page">
+    <main>
+      <header class="case-header">
+        <a class="back-link" href="../index.html#cases">← Все кейсы</a>
+        <p class="eyebrow">Web / B2B-инструмент / Табличная модель</p>
+        <h1>Десктопная модель прайса</h1>
+        <p class="case-lead">
+          После мобильного редизайна прайс-листы стали архитектурно зрелыми, но большие массивы данных оставались неудобными на телефоне.
+          Я спроектировал десктопную рабочую среду, которая стала ещё одним аргументом в пользу подписки.
+        </p>
+        <div class="case-meta">
+          <span>Единственный дизайнер направления</span>
+          <span>Функциональный прототип</span>
+          <span>Платные подписки +8%</span>
+        </div>
+      </header>
+
+      <figure class="case-cover">
+        <img src="../assets/cases/desktop-price-cover.png" alt="Обложка кейса десктопной модели прайса" />
+      </figure>
+
+      <div class="case-layout">
+        <nav class="case-toc" aria-label="Навигация по кейсу">
+          <a href="#context">Контекст</a>
+          <a href="#model">Модель</a>
+          <a href="#prototype">Прототип</a>
+          <a href="#result">Результат</a>
+        </nav>
+
+        <article class="case-article">
+          <section class="case-block" id="context">
+            <h2>Контекст</h2>
+            <p>
+              Product Owner выдвинул гипотезу: часть потенциальной аудитории не готова работать с большими массивами данных с телефона.
+              Для руководителей и подрядчиков прайс-листы - это таблицы с десятками и сотнями позиций.
+            </p>
+            <div class="case-note">
+              <strong>Задача:</strong>
+              создать инструмент, который по скорости работы с данными не уступает привычным табличным решениям
+              и при этом сохраняет логику продукта.
+            </div>
+            <figure class="case-image">
+              <img src="../assets/cases/desktop-price/11.png" alt="Сравнение мобильного и десктопного сценария прайса" />
+              <figcaption>Один сценарий в разных средах: разница в плотности данных и скорости работы.</figcaption>
+            </figure>
+          </section>
+
+          <section class="case-block" id="model">
+            <h2>Архитектура рабочего пространства</h2>
+            <p>
+              Я не переносил мобильные экраны на большой дисплей. Вместо этого сформировал десктопную модель с разделением уровней:
+              контекст прайса, дерево категорий, операционная таблица и локальные действия через контекстные меню.
+            </p>
+            <ul>
+              <li>Табличный режим даёт высокую плотность информации и сравнение строк.</li>
+              <li>Массовые действия и inline-редактирование сокращают лишние переходы.</li>
+              <li>Иерархия категорий остаётся видимой, пользователь не теряет рабочий контекст.</li>
+              <li>Новые режимы и поля добавляются без пересборки модели взаимодействия.</li>
+            </ul>
+            <div class="image-grid">
+              <figure class="case-image wide-image">
+                <img src="../assets/cases/desktop-price/05.png" alt="Разделение уровней управления в десктопной модели прайса" />
+                <figcaption>Уровни управления: контекст, структура, таблица и локальные действия.</figcaption>
+              </figure>
+              <figure class="case-image">
+                <img src="../assets/cases/desktop-price/06.png" alt="Контекстные действия в интерфейсе прайса" />
+                <figcaption>Интерфейс раскрывает сложность только в релевантном контексте.</figcaption>
+              </figure>
+              <figure class="case-image">
+                <img src="../assets/cases/desktop-price/09.png" alt="Масштабируемость десктопной модели прайса" />
+                <figcaption>Модель масштабируется за счёт распределения ответственности по уровням.</figcaption>
+              </figure>
+            </div>
+          </section>
+
+          <section class="case-block" id="prototype">
+            <h2>Функциональный прототип</h2>
+            <p>
+              Чтобы проверить, работает ли набор паттернов как единая система, я за два дня собрал интерактивный прототип.
+              В нём были реализованы редактирование таблицы, поиск, множественное выделение, drag-and-drop и массовое изменение значений.
+            </p>
+            <div class="case-video">
+              <video controls muted preload="metadata" src="../assets/cases/desktop-price/prototype.mp4"></video>
+            </div>
+            <p>
+              Прототип помог сфокусировать обсуждение с Product Owner и разработчиком на UX-решениях, реализуемости и приоритетах,
+              а не на статичных макетах.
+            </p>
+          </section>
+
+          <section class="case-block" id="result">
+            <h2>Результат</h2>
+            <div class="result-grid">
+              <div class="case-fact">
+                <strong>+8%</strong>
+                <span>рост новых платных подписок в течение месяца после релиза</span>
+              </div>
+              <div class="case-fact">
+                <strong>5</strong>
+                <span>участников точечного тестирования успешно выполнили сценарии</span>
+              </div>
+              <div class="case-fact">
+                <strong>1</strong>
+                <span>рабочая среда вместо набора отдельных экранов</span>
+              </div>
+            </div>
+            <p>
+              Пользователи начали переносить основной объём работы в веб-версию, а количество запросов на экспорт данных
+              для внешней обработки сократилось. Раздел стал восприниматься как полноценная альтернатива Excel.
+            </p>
+            <figure class="case-image wide-image">
+              <img src="../assets/cases/desktop-price/02.png" alt="Оптимизация потока создания позиций в прайсе" />
+              <figcaption>После релиза добавлена постоянная строка ввода, чтобы создавать много позиций без смены зоны внимания.</figcaption>
+            </figure>
+          </section>
+        </article>
+      </div>
+    </main>
+
+    <footer>
+      <span>Вадим Баранов</span>
+      <a href="../index.html#contacts">Контакты</a>
+    </footer>
+
+    <script src="../script.js"></script>
+  </body>
+</html>

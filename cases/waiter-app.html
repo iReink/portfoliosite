@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Кейс Вадима Баранова: мобильное приложение официанта, анализ конкурентов, интервью, user flow и экраны."
+    />
+    <title>Приложение официанта - Вадим Баранов</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body class="case-page">
+    <main>
+      <header class="case-header">
+        <a class="back-link" href="../index.html#cases">← Все кейсы</a>
+        <p class="eyebrow">Mobile / UX research / Test task</p>
+        <h1>Приложение официанта</h1>
+        <p class="case-lead">
+          Задача тестового проекта - спроектировать функцию взаимодействия официанта с меню ресторана при приёме заказа.
+          Я начал с анализа конкурентов и интервью, а затем собрал user flow и ключевые экраны.
+        </p>
+        <div class="case-meta">
+          <span>Анализ конкурентов</span>
+          <span>Глубинное интервью</span>
+          <span>Material Design 3</span>
+        </div>
+      </header>
+
+      <figure class="case-cover">
+        <img src="../assets/cases/waiter-app-cover.png" alt="Экран приложения официанта" />
+      </figure>
+
+      <div class="case-layout">
+        <nav class="case-toc" aria-label="Навигация по кейсу">
+          <a href="#research">Исследование</a>
+          <a href="#insights">Инсайты</a>
+          <a href="#flow">User Flow</a>
+          <a href="#screens">Экраны</a>
+        </nav>
+
+        <article class="case-article">
+          <section class="case-block" id="research">
+            <h2>Исследование</h2>
+            <p>
+              Для погружения в процесс я изучил iikoWaiter и провёл интервью с управляющей рестораном:
+              опыт в HORECA более 10 лет, работа официантом, менеджером и управляющей в четырёх ресторанах.
+            </p>
+            <div class="case-note">
+              <strong>Главная цель:</strong>
+              понять, где официант теряет время при приёме заказа, поиске блюда и консультации гостя.
+            </div>
+            <div class="image-grid">
+              <figure class="case-image">
+                <img src="../assets/cases/waiter-app/16.png" alt="Экран iikoWaiter с заказами" />
+                <figcaption>Анализ конкурента: заказы, привязка к столам и фильтрация.</figcaption>
+              </figure>
+              <figure class="case-image">
+                <img src="../assets/cases/waiter-app/08.png" alt="Экран меню в приложении конкурента" />
+                <figcaption>Меню ограничено по площади, а часть действий требует лишних переходов.</figcaption>
+              </figure>
+            </div>
+          </section>
+
+          <section class="case-block" id="insights">
+            <h2>Инсайты</h2>
+            <p>
+              Интервью показало, что проблема не только в создании заказа. Официанту нужно быстро консультировать гостей,
+              ориентироваться в большом меню, работать с заказами разных типов и не ошибаться в позициях, модификаторах и остатках.
+            </p>
+            <ul>
+              <li>Нужно просматривать меню без создания заказа, чтобы консультировать гостя.</li>
+              <li>Карточка блюда должна содержать состав, аллергены, вес, калорийность, фото и теги.</li>
+              <li>Меню меняется нечасто, поэтому позиции в стоп-листе лучше оставлять на месте, но делать неактивными.</li>
+              <li>Для адаптации новых официантов приложение может работать как учебное пособие по меню.</li>
+            </ul>
+            <div class="image-grid">
+              <figure class="case-image wide-image">
+                <img src="../assets/cases/waiter-app/13.png" alt="Сгруппированные инсайты после интервью" />
+                <figcaption>Инсайты стали основой для Job Story и структуры экранов.</figcaption>
+              </figure>
+            </div>
+          </section>
+
+          <section class="case-block" id="flow">
+            <h2>User Flow</h2>
+            <p>
+              Перед проектированием экранов я оформил структуру сценария в User Flow: от выбора заказа и стола
+              до просмотра меню, добавления блюд, работы с гостями и отправки заказа на кухню.
+            </p>
+            <figure class="case-image wide-image">
+              <img src="../assets/cases/waiter-app/15.png" alt="User Flow приложения официанта" />
+              <figcaption>Схема помогла удержать всю логику сценария до перехода к экранам.</figcaption>
+            </figure>
+          </section>
+
+          <section class="case-block" id="screens">
+            <h2>Экраны</h2>
+            <p>
+              Для ускорения прототипирования я использовал компоненты Material Design 3 и сфокусировался на сценарии:
+              заказы, меню, карточка блюда, быстрые действия и статусы.
+            </p>
+            <div class="image-grid">
+              <figure class="case-image">
+                <img src="../assets/cases/waiter-app/02.png" alt="Экран текущих заказов официанта" />
+                <figcaption>Главный экран: текущие заказы, статусы и быстрый переход к новому заказу.</figcaption>
+              </figure>
+              <figure class="case-image">
+                <img src="../assets/cases/waiter-app/04.png" alt="Экран меню ресторана в приложении официанта" />
+                <figcaption>Меню раскрывается на весь экран, категории помогают быстрее ориентироваться.</figcaption>
+              </figure>
+              <figure class="case-image">
+                <img src="../assets/cases/waiter-app/06.png" alt="Экран заказа с гостями и гастропарами" />
+                <figcaption>В заказ добавлены статусы готовности и гастропары для рекомендаций.</figcaption>
+              </figure>
+              <figure class="case-image">
+                <img src="../assets/cases/waiter-app/07.png" alt="Карточка блюда в приложении официанта" />
+                <figcaption>Карточка блюда помогает консультировать гостя без обращения к администратору или кухне.</figcaption>
+              </figure>
+            </div>
+          </section>
+        </article>
+      </div>
+    </main>
+
+    <footer>
+      <span>Вадим Баранов</span>
+      <a href="../index.html#contacts">Контакты</a>
+    </footer>
+
+    <script src="../script.js"></script>
+  </body>
+</html>
