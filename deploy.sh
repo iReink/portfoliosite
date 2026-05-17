@@ -6,12 +6,17 @@ BRANCH="${BRANCH:-main}"
 SITE_DIR="${SITE_DIR:-/var/www/portfoliosite}"
 SERVER_NAME="${SERVER_NAME:-45.38.60.84}"
 NGINX_CONF="/etc/nginx/sites-available/portfoliosite"
+SUDO=""
 
-sudo apt-get update
-sudo apt-get install -y git nginx
+if [ "${EUID:-$(id -u)}" -ne 0 ]; then
+  SUDO="sudo"
+fi
 
-sudo mkdir -p "$(dirname "$SITE_DIR")"
-sudo chown -R "$USER":"$USER" "$(dirname "$SITE_DIR")"
+$SUDO apt-get update
+$SUDO apt-get install -y git nginx
+
+$SUDO mkdir -p "$(dirname "$SITE_DIR")"
+$SUDO chown -R "$USER":"$USER" "$(dirname "$SITE_DIR")"
 
 if [ ! -d "$SITE_DIR/.git" ]; then
   rm -rf "$SITE_DIR"
@@ -21,7 +26,7 @@ else
   git -C "$SITE_DIR" reset --hard "origin/$BRANCH"
 fi
 
-sudo tee "$NGINX_CONF" >/dev/null <<NGINX
+$SUDO tee "$NGINX_CONF" >/dev/null <<NGINX
 server {
     listen 80;
     listen [::]:80;
@@ -36,10 +41,10 @@ server {
 }
 NGINX
 
-sudo ln -sfn "$NGINX_CONF" /etc/nginx/sites-enabled/portfoliosite
-sudo rm -f /etc/nginx/sites-enabled/default
-sudo nginx -t
-sudo systemctl enable nginx
-sudo systemctl reload nginx
+$SUDO ln -sfn "$NGINX_CONF" /etc/nginx/sites-enabled/portfoliosite
+$SUDO rm -f /etc/nginx/sites-enabled/default
+$SUDO nginx -t
+$SUDO systemctl enable nginx
+$SUDO systemctl reload nginx
 
 echo "Deployed: http://$SERVER_NAME"

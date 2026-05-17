@@ -36,7 +36,7 @@ chmod +x deploy.sh
 ./deploy.sh
 ```
 
-Скрипт установит Nginx, скачает актуальную версию сайта в `/var/www/portfoliosite`, настроит конфигурацию и перезапустит веб-сервер.
+Скрипт установит Nginx, скачает актуальную версию сайта в `/var/www/portfoliosite`, настроит конфигурацию и перезапустит веб-сервер. Его можно запускать и под `root`, и под обычным пользователем с доступом к `sudo`.
 
 После успешного выполнения откройте в браузере:
 
@@ -60,4 +60,10 @@ sudo systemctl reload nginx
 cd /opt/portfoliosite
 git pull origin main
 ./deploy.sh
+```
+
+Если на сервере включён firewall UFW, откройте HTTP-трафик:
+
+```bash
+ufw allow 'Nginx HTTP'
 ```
