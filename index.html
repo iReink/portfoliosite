@@ -18,7 +18,10 @@
   </head>
   <body>
     <header class="floating-header" aria-label="Навигация по портфолио">
-      <a class="brand" href="#top" aria-label="К началу страницы">ВБ</a>
+      <a class="brand" href="#top" aria-label="К началу страницы">
+        <img src="assets/profile.jpg" alt="Вадим Баранов" onerror="this.remove()" />
+        <span>ВБ</span>
+      </a>
       <nav class="nav-links">
         <a href="#cases">Кейсы</a>
         <a href="#experience">Опыт</a>
@@ -31,63 +34,26 @@
       <section class="hero section">
         <div class="hero-copy">
           <p class="eyebrow">Продуктовый дизайнер / B2B SaaS / Mobile + Web</p>
-          <h1>Проектирую сложные продуктовые сценарии, где важны логика, данные и скорость команды.</h1>
-          <p class="lead">
-            3 года работаю с B2B-продуктами для управленческого учёта: разбираю требования,
-            проектирую архитектуру сценариев, проверяю решения в прототипах и документирую логику для разработки.
-          </p>
+          <h1 class="hero-title">Более 3 лет опыта проектирования сложных продуктовых сценариев и логики</h1>
+          <ul class="hero-list">
+            <li>Спроектировал с нуля раздел «Прайс-листы»: архитектуру данных, пользовательские сценарии и бизнес-логику с учётом масштабирования и будущих изменений. <strong>Обеспечил рост retention D30 на 22%</strong></li>
+            <li>Выстроил архитектуру раздела с учётом масштабирования и последующих изменений, снизив риски и затраты на будущий рефакторинг</li>
+            <li>Адаптировал раздел прайс-листов под десктоп, расширив аудиторию и <strong>увеличив число продаж платной подписки на 8%</strong></li>
+          </ul>
           <div class="hero-actions" aria-label="Основные действия">
             <a class="button primary" href="mailto:ireink@gmail.com">Написать</a>
             <a class="button secondary" href="#cases">Смотреть кейсы</a>
           </div>
         </div>
-
-        <aside class="hero-proof" aria-label="Ключевые результаты">
-          <div class="proof-row">
-            <span>Retention D30</span>
-            <strong>+22%</strong>
-          </div>
-          <div class="proof-row">
-            <span>Платные подписки</span>
-            <strong>+8%</strong>
-          </div>
-          <div class="proof-row">
-            <span>Уточнение требований</span>
-            <strong>-30%</strong>
-          </div>
-          <p>
-            Сильная зона: пересобрать сложную бизнес-логику в понятную модель интерфейса,
-            которую можно развивать без постоянного рефакторинга.
-          </p>
-        </aside>
-      </section>
-
-      <section class="section principles" aria-label="Коротко о подходе">
-        <article>
-          <span>01</span>
-          <h2>Системность вместо косметики</h2>
-          <p>Начинаю с модели данных, ролей, ограничений и повседневных сценариев, а не с перестановки экранов.</p>
-        </article>
-        <article>
-          <span>02</span>
-          <h2>Прототипирование сложной логики</h2>
-          <p>Проверяю гипотезы в интерактивных прототипах: inline-редактирование, массовые действия, drag-and-drop, сценарии ошибок.</p>
-        </article>
-        <article>
-          <span>03</span>
-          <h2>Передача без догадок</h2>
-          <p>Документирую состояния, ограничения, формулы и связи между экранами так, чтобы разработка меньше возвращалась за уточнениями.</p>
-        </article>
       </section>
 
       <section class="section" id="cases">
         <div class="section-heading">
           <p class="eyebrow">Кейсы</p>
-          <h2>Три работы: от системной архитектуры прайс-листов до мобильного сценария официанта</h2>
         </div>
 
         <div class="case-list">
-          <a class="portfolio-card large-card" href="cases/price-lists.html">
+          <a class="portfolio-card" href="cases/price-lists.html">
             <img src="assets/cases/price-lists-cover.png" alt="Обложка кейса редизайна раздела Прайс-листы" />
             <div class="portfolio-card-copy">
               <p class="case-type">B2B SaaS / Mobile / Системная архитектура</p>
@@ -134,10 +100,6 @@
         <div class="section-heading sticky-copy">
           <p class="eyebrow">Опыт</p>
           <h2>Основной опыт — B2B SaaS для управленческого учёта в строительстве</h2>
-          <p>
-            На виду оставлены результаты и кейсы. Подробности опыта, образование и дополнительный контекст
-            спрятаны в аккордеоны, чтобы главная не превращалась в резюме целиком.
-          </p>
         </div>
 
         <div class="accordion-list">
@@ -178,7 +140,6 @@
       <section class="section skill-section" id="skills">
         <div class="section-heading">
           <p class="eyebrow">Навыки</p>
-          <h2>Инструменты и компетенции</h2>
         </div>
         <div class="skill-cloud" aria-label="Список навыков">
           <span>Figma</span>
@@ -202,7 +163,7 @@
             </summary>
             <div class="details-body">
               <ul>
-                <li>Яндекс.Практикум, 2023 - дизайнер интерфейсов.</li>
+                <li>Яндекс.Практикум, 2023 - дизайнер интерфейсов. <a href="assets/docs/yandex-practicum-certificate.pdf" target="_blank" rel="noreferrer">Сертификат</a> · <a href="assets/docs/yandex-practicum-recommendation.pdf" target="_blank" rel="noreferrer">Рекомендательное письмо</a></li>
                 <li>Челябинский государственный университет, 2006-2010 - математический факультет, кафедра компьютерной безопасности.</li>
               </ul>
             </div>
@@ -214,9 +175,12 @@
             </summary>
             <div class="details-body">
               <ul>
-                <li>Работаю с Python и AI для прототипирования и улучшения коммуникации с разработкой.</li>
-                <li>Развиваю игровой Telegram-бот для профессионального сообщества с 70 участниками.</li>
-                <li>Менторил новичков, проводил онбординг и дополнительные вебинары для студентов.</li>
+                <li>Работаю с Python и ИИ для прототипирования и улучшения коммуникации с разработкой.</li>
+                <li>Более полугода развиваю игровой Telegram-бот для профессионального сообщества с 70 участниками.</li>
+                <li>Моделирую в Blender как хобби.</li>
+                <li>Работал с персоналом в отделе обучения. Люблю менторить и проводить онбординг для новичков.</li>
+                <li>Организую походы для друзей.</li>
+                <li>Во время обучения на курсах стал Старшим студентом: проводил дополнительные вебинары, организовывал внеурочную активность и студенческие кросс-ревью.</li>
                 <li>Основал офлайн-бизнес с командой из 9 человек, который работал и приносил прибыль 9 лет.</li>
               </ul>
             </div>
