@@ -44,7 +44,6 @@ server {
 
 server {
     listen 443 ssl;
-    http2 on;
     server_name $SERVER_NAME;
 
     root $SITE_DIR;
