@@ -77,3 +77,11 @@ apt install -y certbot python3-certbot-nginx
 certbot --nginx -d vbaranov.tech -d www.vbaranov.tech
 certbot renew --dry-run
 ```
+
+Если сертификат получен вручную через DNS challenge, повторно запустите деплой-скрипт. Он увидит файлы сертификата в `/etc/letsencrypt/live/vbaranov.tech` и включит HTTPS в Nginx:
+
+```bash
+cd /opt/portfoliosite
+git pull origin main
+./deploy.sh
+```
