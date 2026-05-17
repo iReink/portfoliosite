@@ -346,8 +346,8 @@ details,
 }
 
 .portfolio-card {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
   flex: 0 0 calc((100% - 36px) / 3);
   gap: 0;
   min-height: 0;
@@ -375,11 +375,18 @@ details,
 }
 
 .portfolio-card.large-card {
-  grid-template-columns: 1fr;
+  flex-direction: column;
 }
 
 .portfolio-card-copy {
   padding: 14px 8px 8px;
+}
+
+.portfolio-card .case-type {
+  display: flex;
+  align-items: flex-start;
+  min-height: 42px;
+  margin-bottom: 12px;
 }
 
 .portfolio-card-copy h3 {
@@ -411,11 +418,19 @@ details,
   box-shadow: 0 22px 54px rgba(58, 62, 58, 0.2);
   color: var(--ink);
   cursor: pointer;
-  font-size: 28px;
-  font-weight: 800;
-  line-height: 1;
+  line-height: 0;
   transform: translateY(-50%);
   transition: background 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+
+.carousel-button svg {
+  width: 25px;
+  height: 25px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.85;
 }
 
 .carousel-button:hover {

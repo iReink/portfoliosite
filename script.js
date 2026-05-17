@@ -32,20 +32,23 @@ if (caseCarousel) {
   let cards = originalCards;
   let currentIndex = 0;
   let isAnimating = false;
+  let transitionTimer;
 
   if (originalCards.length > 1) {
-    const firstClone = originalCards[0].cloneNode(true);
-    const lastClone = originalCards[originalCards.length - 1].cloneNode(true);
-
-    [firstClone, lastClone].forEach((clone) => {
+    const cloneCard = (card) => {
+      const clone = card.cloneNode(true);
       clone.setAttribute("aria-hidden", "true");
       clone.tabIndex = -1;
-    });
+      return clone;
+    };
 
-    track.prepend(lastClone);
-    track.append(firstClone);
+    const leadingClones = originalCards.map(cloneCard);
+    const trailingClones = originalCards.map(cloneCard);
+
+    track.prepend(...leadingClones);
+    track.append(...trailingClones);
     cards = Array.from(track.children);
-    currentIndex = 1;
+    currentIndex = originalCards.length;
   }
 
   const updateCarousel = (animate = true) => {
@@ -62,27 +65,35 @@ if (caseCarousel) {
   const moveCarousel = (direction) => {
     if (cards.length <= 1 || isAnimating) return;
     isAnimating = true;
+    window.clearTimeout(transitionTimer);
     currentIndex += direction;
     updateCarousel(true);
+    transitionTimer = window.setTimeout(finishCarouselMove, 560);
   };
 
   prevButton?.addEventListener("click", () => moveCarousel(-1));
   nextButton?.addEventListener("click", () => moveCarousel(1));
 
-  track.addEventListener("transitionend", (event) => {
-    if (event.propertyName !== "transform" || originalCards.length <= 1) return;
+  const finishCarouselMove = () => {
+    if (originalCards.length <= 1) return;
 
-    if (currentIndex === 0) {
-      currentIndex = cards.length - 2;
+    if (currentIndex < originalCards.length) {
+      currentIndex += originalCards.length;
       updateCarousel(false);
     }
 
-    if (currentIndex === cards.length - 1) {
-      currentIndex = 1;
+    if (currentIndex >= originalCards.length * 2) {
+      currentIndex -= originalCards.length;
       updateCarousel(false);
     }
 
     isAnimating = false;
+  };
+
+  track.addEventListener("transitionend", (event) => {
+    if (event.propertyName !== "transform") return;
+    window.clearTimeout(transitionTimer);
+    finishCarouselMove();
   });
 
   window.addEventListener("resize", () => {
