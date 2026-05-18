@@ -114,7 +114,7 @@ video {
 }
 
 .nav-links a:hover,
-.nav-links a.active {
+.nav-links a:focus-visible {
   background: rgba(39, 111, 97, 0.12);
   color: var(--green);
 }

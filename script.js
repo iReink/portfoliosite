@@ -1,27 +1,3 @@
-const navLinks = Array.from(document.querySelectorAll(".nav-links a"));
-const sections = navLinks
-  .map((link) => {
-    const href = link.getAttribute("href");
-    return href && href.startsWith("#") ? document.querySelector(href) : null;
-  })
-  .filter(Boolean);
-
-const setActiveLink = () => {
-  if (!sections.length) return;
-
-  const currentSection = sections
-    .slice()
-    .reverse()
-    .find((section) => section.getBoundingClientRect().top <= 140);
-
-  navLinks.forEach((link) => {
-    link.classList.toggle("active", currentSection && link.getAttribute("href") === `#${currentSection.id}`);
-  });
-};
-
-setActiveLink();
-window.addEventListener("scroll", setActiveLink, { passive: true });
-
 const caseCarousel = document.querySelector(".case-carousel");
 
 if (caseCarousel) {
