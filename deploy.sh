@@ -14,7 +14,7 @@ if [ "${EUID:-$(id -u)}" -ne 0 ]; then
 fi
 
 $SUDO apt-get update
-$SUDO apt-get install -y git nginx
+$SUDO apt-get install -y git nginx nodejs npm
 
 $SUDO mkdir -p "$(dirname "$SITE_DIR")"
 $SUDO chown -R "$USER":"$USER" "$(dirname "$SITE_DIR")"
@@ -26,6 +26,8 @@ else
   git -C "$SITE_DIR" fetch origin "$BRANCH"
   git -C "$SITE_DIR" reset --hard "origin/$BRANCH"
 fi
+
+npm --prefix "$SITE_DIR" run build
 
 if [ -f "$CERT_DIR/fullchain.pem" ] && [ -f "$CERT_DIR/privkey.pem" ]; then
   $SUDO tee "$NGINX_CONF" >/dev/null <<NGINX

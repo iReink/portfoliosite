@@ -1,0 +1,158 @@
+backend:
+  name: github
+  repo: iReink/portfoliosite
+  branch: main
+  # Для полноценного входа через GitHub на VPS понадобится OAuth proxy.
+  # Когда он будет настроен, сюда добавим base_url и auth_endpoint.
+
+local_backend: true
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "pages"
+    label: "Страницы"
+    files:
+      - name: "home"
+        label: "Главная"
+        file: "content/home.json"
+        format: "json"
+        fields:
+          - label: "SEO"
+            name: "site"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+          - label: "Бренд"
+            name: "brand"
+            widget: "object"
+            fields:
+              - { label: "Фото", name: "image", widget: "image", required: false }
+              - { label: "Alt фото", name: "imageAlt", widget: "string" }
+              - { label: "Инициалы", name: "initials", widget: "string" }
+              - { label: "ARIA label", name: "ariaLabel", widget: "string" }
+          - label: "Навигация"
+            name: "navigation"
+            widget: "list"
+            fields:
+              - { label: "Название", name: "label", widget: "string" }
+              - { label: "Ссылка", name: "href", widget: "string" }
+          - label: "Hero"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Надзаголовок", name: "eyebrow", widget: "string" }
+              - { label: "Заголовок", name: "title", widget: "text" }
+              - label: "Пункты"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "HTML текста", name: "html", widget: "text" }
+              - label: "Главная кнопка"
+                name: "primaryAction"
+                widget: "object"
+                fields:
+                  - { label: "Текст", name: "label", widget: "string" }
+                  - { label: "Ссылка", name: "href", widget: "string" }
+              - label: "Вторичная кнопка"
+                name: "secondaryAction"
+                widget: "object"
+                fields:
+                  - { label: "Текст", name: "label", widget: "string" }
+                  - { label: "Ссылка", name: "href", widget: "string" }
+              - { label: "ARIA label кнопок", name: "actionsLabel", widget: "string" }
+          - label: "Раздел кейсов"
+            name: "casesSection"
+            widget: "object"
+            fields:
+              - { label: "Надзаголовок", name: "eyebrow", widget: "string" }
+              - { label: "ARIA label галереи", name: "carouselLabel", widget: "string" }
+              - { label: "Кнопка назад", name: "prevLabel", widget: "string" }
+              - { label: "Кнопка вперёд", name: "nextLabel", widget: "string" }
+          - label: "Опыт"
+            name: "experience"
+            widget: "object"
+            fields:
+              - { label: "Надзаголовок", name: "eyebrow", widget: "string" }
+              - { label: "Заголовок", name: "title", widget: "text" }
+              - label: "Аккордеоны"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Заголовок", name: "title", widget: "string" }
+                  - { label: "Подпись", name: "meta", widget: "string" }
+                  - { label: "Открыт по умолчанию", name: "open", widget: "boolean", default: false }
+                  - { label: "HTML содержимое", name: "bodyHtml", widget: "text" }
+          - label: "Навыки"
+            name: "skills"
+            widget: "object"
+            fields:
+              - { label: "Надзаголовок", name: "eyebrow", widget: "string" }
+              - { label: "ARIA label списка", name: "ariaLabel", widget: "string" }
+              - { label: "Список", name: "items", widget: "list", field: { label: "Навык", name: "skill", widget: "string" } }
+          - label: "Образование и дополнительный опыт"
+            name: "education"
+            widget: "object"
+            fields:
+              - { label: "ARIA label", name: "ariaLabel", widget: "string" }
+              - label: "Аккордеоны"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Заголовок", name: "title", widget: "string" }
+                  - { label: "Подпись", name: "meta", widget: "string" }
+                  - { label: "Открыт по умолчанию", name: "open", widget: "boolean", default: false }
+                  - { label: "HTML содержимое", name: "bodyHtml", widget: "text" }
+          - label: "Контакты"
+            name: "contacts"
+            widget: "object"
+            fields:
+              - { label: "Надзаголовок", name: "eyebrow", widget: "string" }
+              - { label: "Заголовок", name: "title", widget: "text" }
+              - label: "Ссылки"
+                name: "links"
+                widget: "list"
+                fields:
+                  - { label: "Текст", name: "label", widget: "string" }
+                  - { label: "Ссылка", name: "href", widget: "string" }
+                  - { label: "Target", name: "target", widget: "string", required: false }
+                  - { label: "Rel", name: "rel", widget: "string", required: false }
+          - label: "Футер"
+            name: "footer"
+            widget: "object"
+            fields:
+              - { label: "Имя", name: "name", widget: "string" }
+              - { label: "Текст ссылки на главной", name: "linkLabel", widget: "string" }
+              - { label: "Текст ссылки в кейсах", name: "caseLinkLabel", widget: "string" }
+          - { label: "ARIA label шапки", name: "navigationLabel", widget: "string" }
+
+  - name: "cases"
+    label: "Кейсы"
+    folder: "content/cases"
+    extension: "json"
+    format: "json"
+    create: true
+    identifier_field: "title"
+    fields:
+      - { label: "Порядок", name: "order", widget: "number", value_type: "int" }
+      - { label: "Slug", name: "slug", widget: "string" }
+      - { label: "Куда собрать HTML", name: "outputPath", widget: "string" }
+      - { label: "Title страницы", name: "pageTitle", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Текст ссылки назад", name: "backLabel", widget: "string" }
+      - { label: "Надзаголовок", name: "eyebrow", widget: "string" }
+      - { label: "Заголовок кейса", name: "title", widget: "string" }
+      - { label: "Мета-плашки", name: "meta", widget: "list", field: { label: "Плашка", name: "item", widget: "string" } }
+      - label: "Карточка на главной"
+        name: "card"
+        widget: "object"
+        fields:
+          - { label: "Ссылка", name: "href", widget: "string" }
+          - { label: "Обложка", name: "cover", widget: "image" }
+          - { label: "Alt обложки", name: "coverAlt", widget: "string" }
+          - { label: "Тип", name: "type", widget: "string" }
+          - { label: "Заголовок", name: "title", widget: "string" }
+          - { label: "Описание", name: "summary", widget: "text" }
+          - { label: "Хайлайты", name: "metrics", widget: "list", field: { label: "Хайлайт", name: "metric", widget: "string" } }
+      - { label: "HTML содержимое кейса", name: "bodyHtml", widget: "text" }
