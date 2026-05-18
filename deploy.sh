@@ -40,6 +40,12 @@ server {
         root $SITE_DIR;
     }
 
+    location = /hooks/deploy-portfolio {
+        proxy_pass http://127.0.0.1:9000/hooks/deploy-portfolio;
+        proxy_set_header Host \$host;
+        proxy_set_header X-Real-IP \$remote_addr;
+    }
+
     location / {
         return 301 https://\$host\$request_uri;
     }
@@ -58,6 +64,12 @@ server {
     ssl_protocols TLSv1.2 TLSv1.3;
     ssl_prefer_server_ciphers off;
 
+    location = /hooks/deploy-portfolio {
+        proxy_pass http://127.0.0.1:9000/hooks/deploy-portfolio;
+        proxy_set_header Host \$host;
+        proxy_set_header X-Real-IP \$remote_addr;
+    }
+
     location / {
         try_files \$uri \$uri/ /index.html;
     }
@@ -72,6 +84,12 @@ server {
 
     root $SITE_DIR;
     index index.html;
+
+    location = /hooks/deploy-portfolio {
+        proxy_pass http://127.0.0.1:9000/hooks/deploy-portfolio;
+        proxy_set_header Host \$host;
+        proxy_set_header X-Real-IP \$remote_addr;
+    }
 
     location / {
         try_files \$uri \$uri/ /index.html;
