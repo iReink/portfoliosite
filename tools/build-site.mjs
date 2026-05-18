@@ -51,6 +51,14 @@ ${home.navigation.map((item) => `        <a href="${escapeHtml(item.href)}">${es
       </nav>
     </header>`;
 
+const renderHeroAction = (action) =>
+  `<a ${attrs({
+    class: `button ${action.kind}`,
+    href: action.href,
+    target: action.target,
+    rel: action.rel,
+  })}>${escapeHtml(action.label)}</a>`;
+
 const renderHero = (hero) => `<section class="hero section">
         <div class="hero-copy">
           <p class="eyebrow">${escapeHtml(hero.eyebrow)}</p>
@@ -59,8 +67,8 @@ const renderHero = (hero) => `<section class="hero section">
 ${hero.items.map((item) => `            <li>${item.html}</li>`).join("\n")}
           </ul>
           <div class="hero-actions" aria-label="${escapeHtml(hero.actionsLabel)}">
-            <a class="button primary" href="${escapeHtml(hero.primaryAction.href)}">${escapeHtml(hero.primaryAction.label)}</a>
-            <a class="button secondary" href="${escapeHtml(hero.secondaryAction.href)}">${escapeHtml(hero.secondaryAction.label)}</a>
+            ${renderHeroAction(hero.primaryAction)}
+            ${renderHeroAction(hero.secondaryAction)}
           </div>
         </div>
       </section>`;
