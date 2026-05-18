@@ -2,8 +2,8 @@ backend:
   name: github
   repo: iReink/portfoliosite
   branch: main
-  # Для полноценного входа через GitHub на VPS понадобится OAuth proxy.
-  # Когда он будет настроен, сюда добавим base_url и auth_endpoint.
+  base_url: https://vbaranov.tech
+  auth_endpoint: auth
 
 local_backend: true
 media_folder: "assets/uploads"
