@@ -98,6 +98,19 @@ jtbdShowcases.forEach((showcase) => {
     video.load();
   };
 
+  const playVideo = async (video) => {
+    if (!video) return;
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true;
+
+    try {
+      await video.play();
+    } catch {
+      // Muted autoplay can still be blocked by a browser or user preference.
+    }
+  };
+
   const selectTab = (index) => {
     selectedIndex = index;
 
@@ -109,8 +122,15 @@ jtbdShowcases.forEach((showcase) => {
 
     videoPanels.forEach((panel) => {
       const isActive = Number(panel.dataset.jtbdIndex) === selectedIndex;
+      const video = panel.querySelector("video");
       panel.classList.toggle("is-active", isActive);
-      if (isActive) ensureVideoSource(panel.querySelector("video"));
+
+      if (isActive) {
+        ensureVideoSource(video);
+        playVideo(video);
+      } else if (video) {
+        video.pause();
+      }
     });
 
     copyPanels.forEach((panel) => {
