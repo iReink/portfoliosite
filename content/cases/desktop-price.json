@@ -13,7 +13,7 @@
   "order": 2,
   "card": {
     "href": "cases/desktop-price.html",
-    "cover": "assets/cases/desktop-price-cover.png",
+    "cover": "/assets/uploads/cover-1.png",
     "coverAlt": "Обложка кейса десктопной модели прайса",
     "type": "Web / B2B-инструмент / Табличная модель",
     "title": "Десктопная модель прайса",
