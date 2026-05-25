@@ -137,12 +137,21 @@ collections:
     fields:
       - { label: "Порядок", name: "order", widget: "number", value_type: "int" }
       - { label: "Slug", name: "slug", widget: "string" }
+      - label: "Шаблон"
+        name: "template"
+        widget: "select"
+        required: false
+        default: "notion"
+        options:
+          - { label: "Длинный HTML-кейс", value: "notion" }
+          - { label: "Кейс с JTBD-вкладками", value: "jtbd" }
       - { label: "Куда собрать HTML", name: "outputPath", widget: "string" }
       - { label: "Title страницы", name: "pageTitle", widget: "string" }
       - { label: "Description", name: "description", widget: "text" }
       - { label: "Текст ссылки назад", name: "backLabel", widget: "string" }
       - { label: "Надзаголовок", name: "eyebrow", widget: "string" }
       - { label: "Заголовок кейса", name: "title", widget: "string" }
+      - { label: "Лид кейса", name: "lead", widget: "text", required: false }
       - { label: "Мета-плашки", name: "meta", widget: "list", field: { label: "Плашка", name: "item", widget: "string" } }
       - label: "Карточка на главной"
         name: "card"
@@ -155,4 +164,79 @@ collections:
           - { label: "Заголовок", name: "title", widget: "string" }
           - { label: "Описание", name: "summary", widget: "text" }
           - { label: "Хайлайты", name: "metrics", widget: "list", field: { label: "Хайлайт", name: "metric", widget: "string" } }
-      - { label: "HTML содержимое кейса", name: "bodyHtml", widget: "text" }
+      - { label: "HTML содержимое кейса", name: "bodyHtml", widget: "text", required: false }
+      - label: "Структурные секции для JTBD-кейса"
+        name: "sections"
+        widget: "object"
+        required: false
+        fields:
+          - label: "Проблема"
+            name: "problem"
+            widget: "object"
+            fields:
+              - { label: "ID", name: "id", widget: "string", default: "problem" }
+              - { label: "Надзаголовок", name: "eyebrow", widget: "string", required: false }
+              - { label: "Заголовок", name: "title", widget: "string" }
+              - { label: "HTML текст", name: "bodyHtml", widget: "text" }
+          - label: "Задача"
+            name: "task"
+            widget: "object"
+            fields:
+              - { label: "ID", name: "id", widget: "string", default: "task" }
+              - { label: "Надзаголовок", name: "eyebrow", widget: "string", required: false }
+              - { label: "Заголовок", name: "title", widget: "string" }
+              - { label: "HTML текст", name: "bodyHtml", widget: "text" }
+          - label: "Инструменты"
+            name: "tools"
+            widget: "object"
+            fields:
+              - { label: "ID", name: "id", widget: "string", default: "tools" }
+              - { label: "Надзаголовок", name: "eyebrow", widget: "string", required: false }
+              - { label: "Заголовок", name: "title", widget: "string" }
+              - label: "Инструменты"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Название", name: "label", widget: "string" }
+                  - { label: "Описание", name: "description", widget: "text" }
+          - label: "Результат"
+            name: "result"
+            widget: "object"
+            fields:
+              - { label: "ID", name: "id", widget: "string", default: "result" }
+              - { label: "Надзаголовок", name: "eyebrow", widget: "string", required: false }
+              - { label: "Заголовок", name: "title", widget: "string" }
+              - { label: "HTML текст", name: "bodyHtml", widget: "text" }
+          - label: "Выводы"
+            name: "conclusions"
+            widget: "object"
+            fields:
+              - { label: "ID", name: "id", widget: "string", default: "conclusions" }
+              - { label: "Надзаголовок", name: "eyebrow", widget: "string", required: false }
+              - { label: "Заголовок", name: "title", widget: "string" }
+              - { label: "HTML текст", name: "bodyHtml", widget: "text" }
+      - label: "JTBD"
+        name: "jtbd"
+        widget: "object"
+        required: false
+        fields:
+          - { label: "Надзаголовок", name: "eyebrow", widget: "string", default: "JTBD" }
+          - { label: "Заголовок", name: "title", widget: "string" }
+          - { label: "Описание", name: "lead", widget: "text" }
+          - { label: "ARIA label вкладок", name: "tabsLabel", widget: "string" }
+          - { label: "Подгружать видео в фоне", name: "preloadVideos", widget: "boolean", default: true }
+          - label: "Пользовательские задачи"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Заголовок вкладки", name: "title", widget: "string" }
+              - { label: "Описание выбранной вкладки", name: "description", widget: "text" }
+              - { label: "Заголовок решения справа", name: "solutionTitle", widget: "string" }
+              - label: "Видео"
+                name: "video"
+                widget: "object"
+                fields:
+                  - { label: "Видео MP4", name: "src", widget: "file", required: false }
+                  - { label: "Постер", name: "poster", widget: "image", required: false }
+                  - { label: "Текст плейсхолдера", name: "placeholder", widget: "string", required: false }
+              - { label: "Карточки фактов", name: "facts", widget: "list", field: { label: "Факт", name: "fact", widget: "text" } }

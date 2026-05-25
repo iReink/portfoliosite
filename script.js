@@ -80,6 +80,123 @@ if (caseCarousel) {
   updateCarousel(false);
 }
 
+const jtbdShowcases = Array.from(document.querySelectorAll(".jtbd-showcase"));
+
+jtbdShowcases.forEach((showcase) => {
+  const tabs = Array.from(showcase.querySelectorAll(".jtbd-tab"));
+  const tabList = showcase.querySelector(".jtbd-tabs");
+  const videoPanels = Array.from(showcase.querySelectorAll(".jtbd-video-panel"));
+  const copyPanels = Array.from(showcase.querySelectorAll(".jtbd-copy-panel"));
+  const videos = Array.from(showcase.querySelectorAll("video"));
+  let selectedIndex = Math.max(0, tabs.findIndex((tab) => tab.classList.contains("is-selected")));
+  let preloadStarted = false;
+
+  const ensureVideoSource = (video) => {
+    if (!video || video.src || !video.dataset.src) return;
+    video.src = video.dataset.src;
+    video.preload = "auto";
+    video.load();
+  };
+
+  const selectTab = (index) => {
+    selectedIndex = index;
+
+    tabs.forEach((tab, tabIndex) => {
+      const isSelected = tabIndex === selectedIndex;
+      tab.classList.toggle("is-selected", isSelected);
+      tab.setAttribute("aria-selected", String(isSelected));
+    });
+
+    videoPanels.forEach((panel) => {
+      const isActive = Number(panel.dataset.jtbdIndex) === selectedIndex;
+      panel.classList.toggle("is-active", isActive);
+      if (isActive) ensureVideoSource(panel.querySelector("video"));
+    });
+
+    copyPanels.forEach((panel) => {
+      panel.classList.toggle("is-active", Number(panel.dataset.jtbdIndex) === selectedIndex);
+    });
+  };
+
+  const clearHover = () => {
+    tabList?.classList.remove("has-hover");
+    tabs.forEach((tab) => tab.classList.remove("is-hovered"));
+  };
+
+  const preloadVideosInOrder = async () => {
+    if (preloadStarted || showcase.dataset.preloadVideos === "false") return;
+
+    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    if (connection?.saveData || ["slow-2g", "2g"].includes(connection?.effectiveType)) return;
+
+    preloadStarted = true;
+    const orderedVideos = videos
+      .map((video) => ({ video, index: Number(video.closest(".jtbd-video-panel")?.dataset.jtbdIndex || 0) }))
+      .sort((a, b) => a.index - b.index)
+      .map((item) => item.video);
+
+    for (const video of orderedVideos) {
+      const url = video.currentSrc || video.src || video.dataset.src;
+      if (!url) continue;
+
+      try {
+        await fetch(url, { cache: "force-cache" });
+      } catch {
+        // The video element still gets a chance to load through the browser media pipeline.
+      }
+
+      ensureVideoSource(video);
+    }
+  };
+
+  tabs.forEach((tab, index) => {
+    tab.addEventListener("click", () => selectTab(index));
+    tab.addEventListener("mouseenter", () => {
+      tabList?.classList.add("has-hover");
+      tabs.forEach((item) => item.classList.toggle("is-hovered", item === tab));
+    });
+    tab.addEventListener("focus", () => {
+      tabList?.classList.add("has-hover");
+      tabs.forEach((item) => item.classList.toggle("is-hovered", item === tab));
+    });
+    tab.addEventListener("mouseleave", clearHover);
+    tab.addEventListener("blur", clearHover);
+    tab.addEventListener("keydown", (event) => {
+      if (!["ArrowDown", "ArrowRight", "ArrowUp", "ArrowLeft", "Home", "End"].includes(event.key)) return;
+      event.preventDefault();
+
+      const nextIndex =
+        event.key === "Home"
+          ? 0
+          : event.key === "End"
+            ? tabs.length - 1
+            : event.key === "ArrowUp" || event.key === "ArrowLeft"
+              ? (selectedIndex - 1 + tabs.length) % tabs.length
+              : (selectedIndex + 1) % tabs.length;
+
+      tabs[nextIndex]?.focus();
+      selectTab(nextIndex);
+    });
+  });
+
+  selectTab(selectedIndex);
+
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        preloadVideosInOrder();
+        observer.disconnect();
+      },
+      { rootMargin: "420px 0px" },
+    );
+
+    observer.observe(showcase);
+  } else {
+    window.addEventListener("load", preloadVideosInOrder, { once: true });
+  }
+});
+
 const zoomableImages = Array.from(document.querySelectorAll(".case-image img, .case-cover img"));
 
 if (zoomableImages.length) {

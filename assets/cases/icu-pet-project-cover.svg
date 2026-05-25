@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">ICU Pet Project cover</title>
+  <desc id="desc">Abstract mobile map interface with route, activity cards, and saved places.</desc>
+  <rect width="1200" height="760" fill="#18221e"/>
+  <circle cx="940" cy="120" r="92" fill="#FFD21F"/>
+  <rect x="270" y="86" width="470" height="588" rx="42" fill="#F8F5EE" stroke="#0F1714" stroke-width="12"/>
+  <rect x="296" y="128" width="418" height="280" rx="26" fill="#DDE8DD"/>
+  <path d="M332 348C374 292 423 318 456 269C505 196 573 224 612 172C636 141 667 148 692 126" fill="none" stroke="#276F61" stroke-width="16" stroke-linecap="round"/>
+  <g fill="#276F61">
+    <circle cx="332" cy="348" r="15"/>
+    <circle cx="456" cy="269" r="15"/>
+    <circle cx="612" cy="172" r="15"/>
+    <circle cx="692" cy="126" r="15"/>
+  </g>
+  <rect x="326" y="444" width="356" height="62" rx="22" fill="#FFFFFF"/>
+  <rect x="326" y="528" width="258" height="28" rx="14" fill="#C9D6CF"/>
+  <rect x="326" y="574" width="312" height="28" rx="14" fill="#C9D6CF"/>
+  <rect x="802" y="262" width="250" height="104" rx="26" fill="#FFFFFF"/>
+  <rect x="830" y="291" width="118" height="18" rx="9" fill="#1F2422"/>
+  <rect x="830" y="326" width="184" height="14" rx="7" fill="#6A716E"/>
+  <rect x="144" y="214" width="238" height="96" rx="24" fill="#FFFFFF"/>
+  <rect x="172" y="244" width="94" height="18" rx="9" fill="#1F2422"/>
+  <rect x="172" y="278" width="160" height="12" rx="6" fill="#6A716E"/>
+  <rect x="820" y="430" width="190" height="54" rx="27" fill="#229ED9"/>
+  <rect x="144" y="452" width="252" height="118" rx="28" fill="#FFFFFF"/>
+  <rect x="172" y="486" width="134" height="18" rx="9" fill="#1F2422"/>
+  <rect x="172" y="522" width="178" height="12" rx="6" fill="#6A716E"/>
+  <text x="144" y="670" fill="#F8F5EE" font-family="Inter, Arial, sans-serif" font-size="86" font-weight="800">ICU</text>
+</svg>

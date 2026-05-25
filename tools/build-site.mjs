@@ -218,6 +218,118 @@ ${indent(page.bodyHtml.trim(), 8)}
 </html>
 `;
 
+const renderRichSection = (section, className = "") => `<section class="icu-section ${className}" id="${escapeHtml(section.id)}">
+        <div class="icu-section-heading">
+          <p class="eyebrow">${escapeHtml(section.eyebrow || section.title)}</p>
+          <h2>${escapeHtml(section.title)}</h2>
+        </div>
+        <div class="icu-section-body">
+${indent((section.bodyHtml || "").trim(), 10)}
+        </div>
+      </section>`;
+
+const renderToolsSection = (section) => `<section class="icu-section tools-section" id="${escapeHtml(section.id)}">
+        <div class="icu-section-heading">
+          <p class="eyebrow">${escapeHtml(section.eyebrow || section.title)}</p>
+          <h2>${escapeHtml(section.title)}</h2>
+        </div>
+        <div class="tool-grid">
+${section.items.map((item) => `          <article>
+            <span>${escapeHtml(item.label)}</span>
+            <p>${escapeHtml(item.description)}</p>
+          </article>`).join("\n")}
+        </div>
+      </section>`;
+
+const renderJtbdTab = (item, index) => `<button class="jtbd-tab${index === 0 ? " is-selected" : ""}" type="button" data-jtbd-index="${index}" aria-selected="${index === 0 ? "true" : "false"}">
+              <span class="jtbd-tab-title">${escapeHtml(item.title)}</span>
+              <span class="jtbd-tab-text">${escapeHtml(item.description)}</span>
+            </button>`;
+
+const renderJtbdVideo = (item, index) => {
+  const video = item.video || {};
+  const hasVideo = Boolean(video.src);
+
+  return `<div class="jtbd-video-panel${index === 0 ? " is-active" : ""}" data-jtbd-index="${index}">
+              ${hasVideo ? `<video ${attrs({
+                src: index === 0 ? video.src : undefined,
+                "data-src": index === 0 ? undefined : video.src,
+                poster: video.poster,
+                preload: index === 0 ? "auto" : "none",
+                muted: true,
+                playsinline: true,
+                controls: true,
+                loop: true,
+              })}></video>` : `<div class="jtbd-video-placeholder">
+                <span>${escapeHtml(video.placeholder || "Здесь будет видео-скринкаст")}</span>
+              </div>`}
+            </div>`;
+};
+
+const renderJtbdContent = (item, index) => `<div class="jtbd-copy-panel${index === 0 ? " is-active" : ""}" data-jtbd-index="${index}">
+              <h3>${escapeHtml(item.solutionTitle)}</h3>
+              <div class="jtbd-facts">
+${item.facts.map((fact) => `                <p>${escapeHtml(fact)}</p>`).join("\n")}
+              </div>
+            </div>`;
+
+const renderJtbdSection = (jtbd) => `<section class="jtbd-showcase" id="jtbd" data-preload-videos="${jtbd.preloadVideos === false ? "false" : "true"}">
+        <div class="jtbd-heading">
+          <h2>${escapeHtml(jtbd.eyebrow || "JTBD")}</h2>
+          <p class="jtbd-heading-title">${escapeHtml(jtbd.title)}</p>
+          <p>${escapeHtml(jtbd.lead)}</p>
+        </div>
+
+        <div class="jtbd-layout">
+          <div class="jtbd-tabs" role="tablist" aria-label="${escapeHtml(jtbd.tabsLabel)}">
+${jtbd.items.map((item, index) => indent(renderJtbdTab(item, index), 12)).join("\n")}
+          </div>
+
+          <div class="jtbd-media" aria-live="polite">
+${jtbd.items.map((item, index) => indent(renderJtbdVideo(item, index), 12)).join("\n")}
+          </div>
+
+          <div class="jtbd-copy">
+${jtbd.items.map((item, index) => indent(renderJtbdContent(item, index), 12)).join("\n")}
+          </div>
+        </div>
+      </section>`;
+
+const renderJtbdCasePage = (home, page) => `<!doctype html>
+<html lang="ru">
+${renderHead({ title: page.pageTitle, description: page.description, stylesheetPath: "../styles.css" })}
+  <body class="case-page icu-case">
+    <main>
+      <header class="case-header icu-hero">
+        <a class="back-link" href="../index.html#cases">${escapeHtml(page.backLabel)}</a>
+        <p class="eyebrow">${escapeHtml(page.eyebrow)}</p>
+        <h1>${escapeHtml(page.title)}</h1>
+        <p class="case-lead">${escapeHtml(page.lead)}</p>
+        <div class="case-meta">
+${page.meta.map((item) => `          <span>${escapeHtml(item)}</span>`).join("\n")}
+        </div>
+      </header>
+
+      ${renderRichSection(page.sections.problem, "problem-section")}
+
+      ${renderRichSection(page.sections.task, "task-section")}
+
+      ${renderToolsSection(page.sections.tools)}
+
+      ${renderJtbdSection(page.jtbd)}
+
+      ${renderRichSection(page.sections.result, "result-section")}
+
+      ${renderRichSection(page.sections.conclusions, "conclusions-section")}
+    </main>
+
+    ${renderFooter(home.footer, "../index.html#contacts", home.footer.caseLinkLabel || "Контакты")}
+
+    <script src="../script.js"></script>
+  </body>
+</html>
+`;
+
 const main = async () => {
   const home = await readJson(path.join(contentDir, "home.json"));
   const caseFiles = (await fs.readdir(casesDir)).filter((file) => file.endsWith(".json")).sort();
@@ -228,7 +340,10 @@ const main = async () => {
   await fs.mkdir(path.join(rootDir, "cases"), { recursive: true });
 
   for (const casePage of sortedCases) {
-    await fs.writeFile(path.join(rootDir, casePage.outputPath), renderCasePage(home, casePage), "utf8");
+    const outputFile = path.join(rootDir, casePage.outputPath);
+    await fs.mkdir(path.dirname(outputFile), { recursive: true });
+    const html = casePage.template === "jtbd" ? renderJtbdCasePage(home, casePage) : renderCasePage(home, casePage);
+    await fs.writeFile(outputFile, html, "utf8");
   }
 
   console.log(`Built ${sortedCases.length + 1} pages from content/`);
